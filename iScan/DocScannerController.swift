@@ -19,7 +19,7 @@ class DocScannerController: UIViewController {
     var documentsDirectories:String!    
     var viewController = ViewController()
     var videoPreviewLayer:AVCaptureVideoPreviewLayer?
-    var isPurchase = true
+    var isPurchase = false
     
     @IBOutlet weak var toolbar: UIToolbar!
     @IBOutlet weak var bannerView: GADBannerView!
