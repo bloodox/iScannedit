@@ -9,13 +9,11 @@
 /* Begin PBXBuildFile section */
 		AA00EC821E368C1D0092523B /* SaveScan.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = AA00EC801E368C1D0092523B /* SaveScan.xcdatamodeld */; };
 		AA0211681E3C67780004DEAC /* DocScannerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA0211671E3C67780004DEAC /* DocScannerController.swift */; };
-		AA24B2B01E3D490D00BAB6DD /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA24B2AF1E3D490D00BAB6DD /* TableViewController.swift */; };
 		AA35A3B21E49B77700DFA339 /* DocumentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA35A3B11E49B77700DFA339 /* DocumentViewController.swift */; };
 		AA75CFE11E27DE3900572122 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA75CFE01E27DE3900572122 /* MainViewController.swift */; };
 		AA75CFE31E27DE5300572122 /* GenerateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA75CFE21E27DE5300572122 /* GenerateViewController.swift */; };
-		AA859C191E4E0B990080F046 /* testingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA859C181E4E0B990080F046 /* testingViewController.swift */; };
+		AA77384E1E556CCA0096306B /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA77384D1E556CCA0096306B /* TableViewController.swift */; };
 		AA859C1B1E4E64240080F046 /* DocCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA859C1A1E4E64240080F046 /* DocCollectionViewController.swift */; };
-		AA859C1F1E4E793E0080F046 /* CollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA859C1E1E4E793E0080F046 /* CollectionViewController.swift */; };
 		AA859C211E4E7D1B0080F046 /* CollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA859C201E4E7D1B0080F046 /* CollectionViewCell.swift */; };
 		AADCCC981E36FC1D00B4488E /* TableVController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AADCCC971E36FC1D00B4488E /* TableVController.swift */; };
 		AADCCC9B1E37005A00B4488E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AADCCC991E37005A00B4488E /* Main.storyboard */; };
@@ -23,24 +21,22 @@
 		AAE9145B1E25D65D000F25C1 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAE9145A1E25D65D000F25C1 /* ViewController.swift */; };
 		AAE914601E25D65D000F25C1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AAE9145F1E25D65D000F25C1 /* Assets.xcassets */; };
 		AAE914631E25D65D000F25C1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AAE914611E25D65D000F25C1 /* LaunchScreen.storyboard */; };
-		AAF29F671E2D95F600E19751 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AAF29F621E2D95F600E19751 /* AVFoundation.framework */; };
-		AAF29F681E2D95F600E19751 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AAF29F631E2D95F600E19751 /* CoreData.framework */; };
-		AAF29F691E2D95F600E19751 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AAF29F641E2D95F600E19751 /* CoreGraphics.framework */; };
-		AAF29F6A1E2D95F600E19751 /* CoreImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AAF29F651E2D95F600E19751 /* CoreImage.framework */; };
-		AAF29F6B1E2D95F600E19751 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AAF29F661E2D95F600E19751 /* QuartzCore.framework */; };
-		AAFA2FFD1E43A8650028BA3D /* DocScannerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AAFA2FFB1E43A8650028BA3D /* DocScannerViewController.m */; };
+		D6F191D0DFC73DDF35E77FA7 /* libPods-iScan.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 310E67C6E3C965BE02CA888E /* libPods-iScan.a */; };
+		F24264411EBA2859002EF5B5 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F24264401EBA2859002EF5B5 /* GoogleService-Info.plist */; };
+		F2734C2B1ED0942D00B8FD5F /* DocumentCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2734C2A1ED0942D00B8FD5F /* DocumentCollectionViewController.swift */; };
+		F286ADEC1E6A0BAD00FE1043 /* DocScannerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F286ADEB1E6A0BAD00FE1043 /* DocScannerViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		310E67C6E3C965BE02CA888E /* libPods-iScan.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-iScan.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		52FFCA7BA10E80FB98DB40D0 /* Pods-iScan.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iScan.release.xcconfig"; path = "Pods/Target Support Files/Pods-iScan/Pods-iScan.release.xcconfig"; sourceTree = "<group>"; };
 		AA00EC811E368C1D0092523B /* SaveScan.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = SaveScan.xcdatamodel; sourceTree = "<group>"; };
 		AA0211671E3C67780004DEAC /* DocScannerController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DocScannerController.swift; sourceTree = "<group>"; };
-		AA24B2AF1E3D490D00BAB6DD /* TableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewController.swift; sourceTree = "<group>"; };
 		AA35A3B11E49B77700DFA339 /* DocumentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DocumentViewController.swift; sourceTree = "<group>"; };
 		AA75CFE01E27DE3900572122 /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		AA75CFE21E27DE5300572122 /* GenerateViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GenerateViewController.swift; sourceTree = "<group>"; };
-		AA859C181E4E0B990080F046 /* testingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = testingViewController.swift; sourceTree = "<group>"; };
+		AA77384D1E556CCA0096306B /* TableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewController.swift; sourceTree = "<group>"; };
 		AA859C1A1E4E64240080F046 /* DocCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DocCollectionViewController.swift; sourceTree = "<group>"; };
-		AA859C1E1E4E793E0080F046 /* CollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionViewController.swift; sourceTree = "<group>"; };
 		AA859C201E4E7D1B0080F046 /* CollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionViewCell.swift; sourceTree = "<group>"; };
 		AADCCC971E36FC1D00B4488E /* TableVController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableVController.swift; sourceTree = "<group>"; };
 		AADCCC9A1E37005A00B4488E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -50,14 +46,12 @@
 		AAE9145F1E25D65D000F25C1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		AAE914621E25D65D000F25C1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		AAE914641E25D65D000F25C1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		AAF29F621E2D95F600E19751 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
-		AAF29F631E2D95F600E19751 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
-		AAF29F641E2D95F600E19751 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
-		AAF29F651E2D95F600E19751 /* CoreImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreImage.framework; path = System/Library/Frameworks/CoreImage.framework; sourceTree = SDKROOT; };
-		AAF29F661E2D95F600E19751 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		AAFA2FFA1E43A7450028BA3D /* iScan-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "iScan-Bridging-Header.h"; sourceTree = "<group>"; };
-		AAFA2FFB1E43A8650028BA3D /* DocScannerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DocScannerViewController.m; sourceTree = "<group>"; };
-		AAFA2FFC1E43A8650028BA3D /* DocScannerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DocScannerViewController.h; sourceTree = "<group>"; };
+		F24264401EBA2859002EF5B5 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		F2734C2A1ED0942D00B8FD5F /* DocumentCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DocumentCollectionViewController.swift; sourceTree = "<group>"; };
+		F286ADEB1E6A0BAD00FE1043 /* DocScannerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DocScannerViewController.swift; sourceTree = "<group>"; };
+		F2E47A671EBE526B00B5BE56 /* iScan.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = iScan.entitlements; sourceTree = "<group>"; };
+		F7DFDD291BD2B79926BD0192 /* Pods-iScan.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iScan.debug.xcconfig"; path = "Pods/Target Support Files/Pods-iScan/Pods-iScan.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -65,23 +59,59 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AAF29F671E2D95F600E19751 /* AVFoundation.framework in Frameworks */,
-				AAF29F681E2D95F600E19751 /* CoreData.framework in Frameworks */,
-				AAF29F691E2D95F600E19751 /* CoreGraphics.framework in Frameworks */,
-				AAF29F6A1E2D95F600E19751 /* CoreImage.framework in Frameworks */,
-				AAF29F6B1E2D95F600E19751 /* QuartzCore.framework in Frameworks */,
+				D6F191D0DFC73DDF35E77FA7 /* libPods-iScan.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		A3F2C7ACAE3856B1AABAA8BF /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				F7DFDD291BD2B79926BD0192 /* Pods-iScan.debug.xcconfig */,
+				52FFCA7BA10E80FB98DB40D0 /* Pods-iScan.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		AA859C221E4E9B810080F046 /* Document history */ = {
+			isa = PBXGroup;
+			children = (
+				AA35A3B11E49B77700DFA339 /* DocumentViewController.swift */,
+				AA859C201E4E7D1B0080F046 /* CollectionViewCell.swift */,
+				F2734C2A1ED0942D00B8FD5F /* DocumentCollectionViewController.swift */,
+				AA77384D1E556CCA0096306B /* TableViewController.swift */,
+				AA859C1A1E4E64240080F046 /* DocCollectionViewController.swift */,
+			);
+			name = "Document history";
+			sourceTree = "<group>";
+		};
+		AA859C231E4E9C620080F046 /* Doc Scanning */ = {
+			isa = PBXGroup;
+			children = (
+				AA0211671E3C67780004DEAC /* DocScannerController.swift */,
+				F286ADEB1E6A0BAD00FE1043 /* DocScannerViewController.swift */,
+			);
+			name = "Doc Scanning";
+			sourceTree = "<group>";
+		};
+		AA859C241E4E9C8B0080F046 /* Barcode reading */ = {
+			isa = PBXGroup;
+			children = (
+				AAE9145A1E25D65D000F25C1 /* ViewController.swift */,
+				AADCCC971E36FC1D00B4488E /* TableVController.swift */,
+			);
+			name = "Barcode reading";
+			sourceTree = "<group>";
+		};
 		AAE9144C1E25D65D000F25C1 = {
 			isa = PBXGroup;
 			children = (
 				AAE914571E25D65D000F25C1 /* iScan */,
 				AAE914561E25D65D000F25C1 /* Products */,
 				AAF29F611E2D95F600E19751 /* Frameworks */,
+				A3F2C7ACAE3856B1AABAA8BF /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -96,25 +126,19 @@
 		AAE914571E25D65D000F25C1 /* iScan */ = {
 			isa = PBXGroup;
 			children = (
-				AADCCC971E36FC1D00B4488E /* TableVController.swift */,
+				F2E47A671EBE526B00B5BE56 /* iScan.entitlements */,
 				AAE914581E25D65D000F25C1 /* AppDelegate.swift */,
 				AA00EC801E368C1D0092523B /* SaveScan.xcdatamodeld */,
-				AAE9145A1E25D65D000F25C1 /* ViewController.swift */,
+				AA859C241E4E9C8B0080F046 /* Barcode reading */,
 				AA75CFE21E27DE5300572122 /* GenerateViewController.swift */,
-				AA0211671E3C67780004DEAC /* DocScannerController.swift */,
-				AA859C181E4E0B990080F046 /* testingViewController.swift */,
-				AAFA2FFB1E43A8650028BA3D /* DocScannerViewController.m */,
-				AAFA2FFC1E43A8650028BA3D /* DocScannerViewController.h */,
-				AA35A3B11E49B77700DFA339 /* DocumentViewController.swift */,
+				AA859C231E4E9C620080F046 /* Doc Scanning */,
 				AAFA2FFA1E43A7450028BA3D /* iScan-Bridging-Header.h */,
 				AA75CFE01E27DE3900572122 /* MainViewController.swift */,
-				AA859C201E4E7D1B0080F046 /* CollectionViewCell.swift */,
-				AA24B2AF1E3D490D00BAB6DD /* TableViewController.swift */,
+				AA859C221E4E9B810080F046 /* Document history */,
 				AADCCC991E37005A00B4488E /* Main.storyboard */,
-				AA859C1A1E4E64240080F046 /* DocCollectionViewController.swift */,
-				AA859C1E1E4E793E0080F046 /* CollectionViewController.swift */,
 				AAE9145F1E25D65D000F25C1 /* Assets.xcassets */,
 				AAE914611E25D65D000F25C1 /* LaunchScreen.storyboard */,
+				F24264401EBA2859002EF5B5 /* GoogleService-Info.plist */,
 				AAE914641E25D65D000F25C1 /* Info.plist */,
 			);
 			path = iScan;
@@ -123,11 +147,7 @@
 		AAF29F611E2D95F600E19751 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				AAF29F621E2D95F600E19751 /* AVFoundation.framework */,
-				AAF29F631E2D95F600E19751 /* CoreData.framework */,
-				AAF29F641E2D95F600E19751 /* CoreGraphics.framework */,
-				AAF29F651E2D95F600E19751 /* CoreImage.framework */,
-				AAF29F661E2D95F600E19751 /* QuartzCore.framework */,
+				310E67C6E3C965BE02CA888E /* libPods-iScan.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -139,9 +159,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = AAE914671E25D65D000F25C1 /* Build configuration list for PBXNativeTarget "iScan" */;
 			buildPhases = (
+				E3C6D046CDDB148D3AB5B420 /* [CP] Check Pods Manifest.lock */,
 				AAE914511E25D65D000F25C1 /* Sources */,
 				AAE914521E25D65D000F25C1 /* Frameworks */,
 				AAE914531E25D65D000F25C1 /* Resources */,
+				24067274A9CA0FB9101DE1DF /* [CP] Embed Pods Frameworks */,
+				F6FC1BA38E8C9650044AAD13 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -167,6 +190,11 @@
 						DevelopmentTeam = SWZ7G84L24;
 						LastSwiftMigration = 0820;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.Push = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -194,6 +222,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				AADCCC9B1E37005A00B4488E /* Main.storyboard in Resources */,
+				F24264411EBA2859002EF5B5 /* GoogleService-Info.plist in Resources */,
 				AAE914631E25D65D000F25C1 /* LaunchScreen.storyboard in Resources */,
 				AAE914601E25D65D000F25C1 /* Assets.xcassets in Resources */,
 			);
@@ -201,25 +230,72 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		24067274A9CA0FB9101DE1DF /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-iScan/Pods-iScan-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		E3C6D046CDDB148D3AB5B420 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		F6FC1BA38E8C9650044AAD13 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-iScan/Pods-iScan-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		AAE914511E25D65D000F25C1 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AA859C1F1E4E793E0080F046 /* CollectionViewController.swift in Sources */,
 				AA75CFE11E27DE3900572122 /* MainViewController.swift in Sources */,
 				AA0211681E3C67780004DEAC /* DocScannerController.swift in Sources */,
-				AAFA2FFD1E43A8650028BA3D /* DocScannerViewController.m in Sources */,
+				AA77384E1E556CCA0096306B /* TableViewController.swift in Sources */,
 				AADCCC981E36FC1D00B4488E /* TableVController.swift in Sources */,
 				AA75CFE31E27DE5300572122 /* GenerateViewController.swift in Sources */,
 				AA35A3B21E49B77700DFA339 /* DocumentViewController.swift in Sources */,
+				F286ADEC1E6A0BAD00FE1043 /* DocScannerViewController.swift in Sources */,
 				AAE9145B1E25D65D000F25C1 /* ViewController.swift in Sources */,
-				AA859C191E4E0B990080F046 /* testingViewController.swift in Sources */,
 				AA00EC821E368C1D0092523B /* SaveScan.xcdatamodeld in Sources */,
 				AA859C211E4E7D1B0080F046 /* CollectionViewCell.swift in Sources */,
-				AA24B2B01E3D490D00BAB6DD /* TableViewController.swift in Sources */,
 				AAE914591E25D65D000F25C1 /* AppDelegate.swift in Sources */,
 				AA859C1B1E4E64240080F046 /* DocCollectionViewController.swift in Sources */,
+				F2734C2B1ED0942D00B8FD5F /* DocumentCollectionViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -340,12 +416,17 @@
 		};
 		AAE914681E25D65D000F25C1 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = F7DFDD291BD2B79926BD0192 /* Pods-iScan.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = iScan/iScan.entitlements;
 				COPY_HEADERS_RUN_UNIFDEF = NO;
 				DEVELOPMENT_TEAM = SWZ7G84L24;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = iScan/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -359,12 +440,17 @@
 		};
 		AAE914691E25D65D000F25C1 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 52FFCA7BA10E80FB98DB40D0 /* Pods-iScan.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = iScan/iScan.entitlements;
 				COPY_HEADERS_RUN_UNIFDEF = NO;
 				DEVELOPMENT_TEAM = SWZ7G84L24;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = iScan/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

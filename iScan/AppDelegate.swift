@@ -8,7 +8,7 @@
 
 import UIKit
 import CoreData
-
+import Firebase
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -18,6 +18,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        FIRApp.configure()
+        GADMobileAds.configure(withApplicationID: "ca-app-pub-7317713550657480/5127447259")
+        
         return true
     }
 
@@ -141,7 +144,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 // abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
                 let nserror = error as NSError
                 NSLog("Unresolved error \(nserror), \(nserror.userInfo)")
-                abort()
+                
             }
         }
     }

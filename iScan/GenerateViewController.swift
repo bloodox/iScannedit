@@ -8,12 +8,15 @@
 
 import UIKit
 import Social
+import Firebase
 
 var qrcodeImage: CIImage!
 var genImage: UIImage!
 
+
 class GenerateViewController: UIViewController {
     
+    @IBOutlet weak var bannerView: GADBannerView!
     @IBOutlet weak var doneAction: UIBarButtonItem!
     @IBOutlet weak var shareAction: UIBarButtonItem!
     @IBOutlet weak var textField: UITextField!
@@ -24,6 +27,10 @@ class GenerateViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        bannerView.adUnitID = "ca-app-pub-7317713550657480/5127447259"
+        bannerView.rootViewController = self
+        bannerView.load(GADRequest())
+        
         if qrcodeImage == nil {
             slider.isHidden = true
         }
@@ -88,15 +95,19 @@ class GenerateViewController: UIViewController {
     @IBAction func shareAction(_ sender: UIBarButtonItem) {
         if imgQRCode.image != nil {
             if UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiom.pad {
-                let img: [AnyObject] = [self.imgQRCode.image as AnyObject]
-                let vc = UIActivityViewController(activityItems: img as [AnyObject], applicationActivities: nil)
+                let message: String! = "Created by iScannedit"
+                let img = self.imgQRCode.image
+                let shareItem = [img as Any, message] as [Any]
+                let vc = UIActivityViewController(activityItems: shareItem, applicationActivities: nil)
                 vc.popoverPresentationController?.barButtonItem = sender
                 vc.popoverPresentationController?.permittedArrowDirections = UIPopoverArrowDirection.up
                 self.present(vc, animated: true, completion: nil)
             }
             else {
-                let img: [AnyObject] = [self.imgQRCode.image as AnyObject]
-                let vc = UIActivityViewController(activityItems: img as [AnyObject], applicationActivities: nil)
+                let message: String! = "Created by iScannedit"
+                let img = self.imgQRCode.image
+                let shareItem = [img as Any, message] as [Any]
+                let vc = UIActivityViewController(activityItems: shareItem, applicationActivities: nil)
                 self.present(vc, animated: true, completion: nil)
             }
         }
@@ -118,8 +129,13 @@ class GenerateViewController: UIViewController {
         }
         return nil
     }
-    
-    
+    func adViewDidReceiveAd(_ bannerView: GADBannerView!) {
+        print("Banner loaded successfully")
+    }
+    func adView(_ bannerView: GADBannerView!, didFailToReceiveAdWithError error: GADRequestError!) {
+        print("Fail to receive ads")
+        print(error)
+    }
     
     
     

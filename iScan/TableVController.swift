@@ -8,6 +8,7 @@
 
 import UIKit
 import CoreData
+import Firebase
 
 
 class TableVController: UITableViewController {
@@ -15,10 +16,14 @@ class TableVController: UITableViewController {
     var scanned = [NSManagedObject]()
     
     
+    @IBOutlet weak var bannerView: GADBannerView!
     @IBOutlet weak var doneAction: UIBarButtonItem!
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationItem.leftBarButtonItem = editButtonItem
+        bannerView.adUnitID = "ca-app-pub-7317713550657480/5127447259"
+        bannerView.rootViewController = self
+        bannerView.load(GADRequest())
+        navigationItem.rightBarButtonItem = editButtonItem
         title = "iScan History"
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "Cell")
         if #available(iOS 10.0, *) {
@@ -58,7 +63,13 @@ class TableVController: UITableViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
+    func adViewDidReceiveAd(_ bannerView: GADBannerView!) {
+        print("Banner loaded successfully")
+    }
+    func adView(_ bannerView: GADBannerView!, didFailToReceiveAdWithError error: GADRequestError!) {
+        print("Fail to receive ads")
+        print(error)
+    }
     // MARK: - Table view data source
     /*
     override func numberOfSections(in tableView: UITableView) -> Int {

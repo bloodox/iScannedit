@@ -4,7 +4,21 @@
 //
 //  Created by William Thompson on 1/28/17.
 //  Copyright © 2017 William Thompson. All rights reserved.
-//
+//  The MIT License (MIT)
+//  Copyright (c) 2015 Maximilian Mackh
+//  Permission is hereby granted, free of charge, to any person obtaining a copy of this software and
+//  associated documentation files (the "Software"), to deal in the Software without restriction,
+//  including without limitation the rights to use, copy, modify, merge, publish, distribute,
+//  sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is
+//  furnished to do so, subject to the following conditions:
+//  The above copyright notice and this permission notice shall be included in all copies or
+//  substantial portions of the Software.
+//  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT
+//  NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+//  NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
+//  DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT
+//  OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+//  Modified by William Thompson on 1/28/17 to meet the needs of iScan project
 
 #import "DocScannerViewController.h"
 #import <AVFoundation/AVFoundation.h>
@@ -365,7 +379,7 @@
          
          NSString *documentsDirectory = [filePath objectAtIndex:0]; //create NSString object, that holds our exact path to the documents directory
          
-         NSString *fullPath = [documentsDirectory stringByAppendingPathComponent:[NSString stringWithFormat:@"/ImagePicker/iScan_img_%i.jpeg",(int)[NSDate date].timeIntervalSince1970]];
+         NSString *fullPath = [documentsDirectory stringByAppendingPathComponent:[NSString stringWithFormat:@"/iScan_img_%i.pdf",(int)[NSDate date].timeIntervalSince1970]];
          
          
          @autoreleasepool
@@ -458,7 +472,7 @@ void saveCGImageAsJPEGToFilePath(CGImageRef imageRef, NSString *filePath)
         CGImageDestinationAddImage(destination, imageRef, nil);
         CGImageDestinationFinalize(destination);
         CFRelease(destination);
-        printf("Succeeded:");
+        
     }
 }
 
@@ -512,7 +526,7 @@ void saveCGImageAsJPEGToFilePath(CGImageRef imageRef, NSString *filePath)
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^
                   {
-                      detector = [CIDetector detectorOfType:CIDetectorTypeRectangle context:nil options:@{CIDetectorAccuracy : CIDetectorAccuracyHigh}];
+                      detector = [CIDetector detectorOfType:CIDetectorTypeRectangle context:nil options:@{CIDetectorAccuracy : CIDetectorAccuracyHigh, CIDetectorTracking: @(YES)}];
                   });
     return detector;
 }
