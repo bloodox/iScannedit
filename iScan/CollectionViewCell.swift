@@ -11,6 +11,10 @@ import UIKit
 class CollectionViewCell: UICollectionViewCell {
     
     @IBOutlet weak var imageView: UIImageView!
+    @IBOutlet weak var deleteCellView: UIView!
+    @IBOutlet weak var cellView: UIView!
+    @IBOutlet weak var shareAction: UIButton!
+    @IBOutlet weak var deleteAction: UIButton!
     
-
 }
+

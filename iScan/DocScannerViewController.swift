@@ -42,7 +42,7 @@ class DocScannerViewController: UIView, AVCaptureVideoDataOutputSampleBufferDele
     var isStopped: Bool = false
     var imageDedectionConfidence: CGFloat = 0.0
     var borderDetectTimeKeeper: Timer?
-    var borderDetectFrames: Bool = false
+    @objc var borderDetectFrames: Bool = false
     var borderDetectLastRectangleFeature: CIRectangleFeature?
     var isCapturing: Bool = false
     var captureQueue: DispatchQueue?
@@ -64,10 +64,10 @@ class DocScannerViewController: UIView, AVCaptureVideoDataOutputSampleBufferDele
         NotificationCenter.default.addObserver(self, selector: #selector(self.foregroundMode), name: NSNotification.Name.UIApplicationDidBecomeActive, object: nil)
         self.captureQueue = DispatchQueue(label: "com.AVCameraCaptureQueue")
     }
-    func backgroundMode() {
+    @objc func backgroundMode() {
         self.isForceStop = true
     }
-    func foregroundMode() {
+    @objc func foregroundMode() {
         self.isForceStop = false
     }
     deinit {
@@ -90,7 +90,7 @@ class DocScannerViewController: UIView, AVCaptureVideoDataOutputSampleBufferDele
     }
     func setupCameraView() {
         self.createGLKView()
-        let possibleDevices: [Any] = AVCaptureDevice.devices(withMediaType: AVMediaTypeVideo)
+        let possibleDevices: [Any] = AVCaptureDevice.devices(for: AVMediaType.video)
         let device: AVCaptureDevice? = possibleDevices.first as! AVCaptureDevice?
         if device == nil {
             return
@@ -100,17 +100,17 @@ class DocScannerViewController: UIView, AVCaptureVideoDataOutputSampleBufferDele
         self.captureSession = session
         session.beginConfiguration()
         self.captureDevice = device
-        let input = try? AVCaptureDeviceInput(device: device)
-        session.sessionPreset = AVCaptureSessionPresetPhoto
-        session.addInput(input)
+        let input = try? AVCaptureDeviceInput(device: device!)
+        session.sessionPreset = AVCaptureSession.Preset.photo
+        session.addInput(input!)
         let dataOutput = AVCaptureVideoDataOutput()
         dataOutput.alwaysDiscardsLateVideoFrames = true
-        dataOutput.videoSettings = [(kCVPixelBufferPixelFormatTypeKey as AnyHashable): (kCVPixelFormatType_32BGRA)]
+        dataOutput.videoSettings = [(kCVPixelBufferPixelFormatTypeKey as AnyHashable as! String): (kCVPixelFormatType_32BGRA)]
         dataOutput.setSampleBufferDelegate(self, queue: self.captureQueue)
         session.addOutput(dataOutput)
         self.stillImageOutput = AVCaptureStillImageOutput()
         session.addOutput(self.stillImageOutput)
-        let connection: AVCaptureConnection? = (dataOutput.connections).first as! AVCaptureConnection?
+        let connection: AVCaptureConnection? = (dataOutput.connections).first 
         connection?.videoOrientation = .portrait
         if (device?.isFlashAvailable)! {
             do {
@@ -147,13 +147,13 @@ class DocScannerViewController: UIView, AVCaptureVideoDataOutputSampleBufferDele
         self.isStopped = false
         captureSession.startRunning()
         self.borderDetectTimeKeeper = Timer.scheduledTimer(timeInterval: 0.5, target: self, selector: #selector(getter: self.borderDetectFrames), userInfo: nil, repeats: true)
-        self.hideGLKView(false, completion: { _ in })
+        self.hideGLKView(false, completion: {  })
     }
     func stop() {
         self.isStopped = true
         self.captureSession.stopRunning()
         self.borderDetectTimeKeeper?.invalidate()
-        self.hideGLKView(true, completion: { _ in })
+        self.hideGLKView(true, completion: {  })
     }
     func focusAtPoint(point: CGPoint, completionHandler: @escaping () -> Void) {
         let device: AVCaptureDevice? = self.captureDevice
@@ -185,9 +185,9 @@ class DocScannerViewController: UIView, AVCaptureVideoDataOutputSampleBufferDele
         self.captureQueue?.suspend()
         var videoConnection: AVCaptureConnection!
         for connection in self.stillImageOutput.connections{
-            for port in (connection as! AVCaptureConnection).inputPorts {
-                if (port as! AVCaptureInputPort).mediaType.isEqual(AVMediaTypeVideo) {
-                    videoConnection = connection as! AVCaptureConnection
+            for port in (connection ).inputPorts {
+                if (port.mediaType) == (AVMediaType.video) {
+                    videoConnection = connection 
                     break
                 }
             }
@@ -205,7 +205,7 @@ class DocScannerViewController: UIView, AVCaptureVideoDataOutputSampleBufferDele
             let documentsDirectory: String = filePath[0]
             let fullPath: String = documentsDirectory.appending("/iScan_\(Int(Date().timeIntervalSince1970)).pdf")
             autoreleasepool {
-                let imageData = Data(AVCaptureStillImageOutput.jpegStillImageNSDataRepresentation(sampleBuffer))
+                let imageData = Data(AVCaptureStillImageOutput.jpegStillImageNSDataRepresentation(sampleBuffer!)!)
                 var enhancedImage = CIImage(data: imageData, options: [kCIImageColorSpace: NSNull()])
                 if weakSelf?.cameraViewType == DocScannerCameraViewType.blackAndWhite {
                     enhancedImage = self.blackAndWhiteFilter(on: enhancedImage!)
@@ -293,7 +293,7 @@ class DocScannerViewController: UIView, AVCaptureVideoDataOutputSampleBufferDele
         rectangleCoordinates["inputTopRight"] = CIVector(cgPoint: rectangleFeature.topRight)
         rectangleCoordinates["inputBottomLeft"] = CIVector(cgPoint: rectangleFeature.bottomLeft)
         rectangleCoordinates["inputBottomRight"] = CIVector(cgPoint: rectangleFeature.bottomRight)
-        return image.applyingFilter("CIPerspectiveCorrection", withInputParameters: ["inputTopLeft": CIVector(cgPoint: rectangleFeature.topLeft), "inputTopRight": CIVector(cgPoint: rectangleFeature.topRight), "inputBottomLeft": CIVector(cgPoint: rectangleFeature.bottomLeft), "inputBottomRight": CIVector(cgPoint: rectangleFeature.bottomRight)])
+        return image.applyingFilter("CIPerspectiveCorrection", parameters: ["inputTopLeft": CIVector(cgPoint: rectangleFeature.topLeft), "inputTopRight": CIVector(cgPoint: rectangleFeature.topRight), "inputBottomLeft": CIVector(cgPoint: rectangleFeature.bottomLeft), "inputBottomRight": CIVector(cgPoint: rectangleFeature.bottomRight)])
     }
     /*
      // This function isn't used
@@ -353,11 +353,13 @@ class DocScannerViewController: UIView, AVCaptureVideoDataOutputSampleBufferDele
             var minimum = points[0]
             var maximum = points[0]
             for point in points {
-                minimum?.x = min((minimum?.x)!, (point?.x)!)
-                minimum?.y = min((minimum?.y)!, (point?.y)!)
-                maximum?.x = max((maximum?.x)!, (point?.x)!)
-                maximum?.y = max((maximum?.y)!, (point?.y)!)
+                minimum!.x = min((minimum?.x)!, (point?.x)!)
+                minimum!.y = min((minimum?.y)!, (point?.y)!)
+                maximum!.x = max((maximum?.x)!, (point?.x)!)
+                maximum!.y = max((maximum?.y)!, (point?.y)!)
             }
+            
+            
             let center = CGPoint(x: ((minimum?.x)! + (maximum?.x)!) / 2, y: ((minimum?.y)! + (maximum?.y)!) / 2)
             let angle = { (point: CGPoint!) -> CGFloat in
                 let theta = atan2(point.y - center.y, point.x - center.x)
@@ -393,14 +395,14 @@ class DocScannerViewController: UIView, AVCaptureVideoDataOutputSampleBufferDele
         
         return image.extent.insetBy(dx: CGFloat((image.extent.size.width - cropWidth) / 2), dy: CGFloat((image.extent.size.height - cropHeight) / 2))
     }
-    func captureOutput(_ captureOutput: AVCaptureOutput, didOutputSampleBuffer sampleBuffer: CMSampleBuffer?, from connection: AVCaptureConnection) {
+    func captureOutput(_ captureOutput: AVCaptureOutput, didOutput sampleBuffer: CMSampleBuffer, from connection: AVCaptureConnection) {
         if self.isForceStop == true{
             return
         }
-        if (self.isStopped == true || self.isCapturing == true || !CMSampleBufferIsValid(sampleBuffer!)) {
+        if (self.isStopped == true || self.isCapturing == true || !CMSampleBufferIsValid(sampleBuffer)) {
             return
         }
-        let pixelBuffer: CVPixelBuffer? = (CMSampleBufferGetImageBuffer(sampleBuffer!)! )
+        let pixelBuffer: CVPixelBuffer? = (CMSampleBufferGetImageBuffer(sampleBuffer)! )
         var image = CIImage(cvPixelBuffer: pixelBuffer!)
         if self.cameraViewType == DocScannerCameraViewType.blackAndWhite {
             image = self.blackAndWhiteFilter(on: image)
@@ -431,7 +433,10 @@ class DocScannerViewController: UIView, AVCaptureVideoDataOutputSampleBufferDele
                 EAGLContext.setCurrent(self.context)
             }
             self.glkView?.bindDrawable()
+            
             self.coreImageContext?.draw(image, in: self.bounds, from: self.cropRect(forPreviewImage: image))
+            
+            
             self.glkView?.display()
             if self.intrinsicContentSizes.width != image.extent.size.width {
                 self.intrinsicContentSizes = image.extent.size
@@ -454,18 +459,18 @@ class DocScannerViewController: UIView, AVCaptureVideoDataOutputSampleBufferDele
      */
     func drawHighlightOverlay(forPoints image: CIImage, topLeft: CGPoint, topRight: CGPoint, bottomLeft: CGPoint, bottomRight: CGPoint) -> CIImage {
         var overlay = CIImage(color: CIColor(red: 0.0, green: 0.8, blue: 1.0, alpha: 0.4))
-        overlay = overlay.cropping(to: image.extent)
+        overlay = overlay.cropped(to: image.extent)
         overlay = overlay.applyingFilter("CIPerspectiveTransformWithExtent",
-                                         withInputParameters: [
+                                         parameters: [
                                             "inputExtent": CIVector(cgRect: image.extent),
                                             "inputTopLeft": CIVector(cgPoint: topLeft),
                                             "inputTopRight": CIVector(cgPoint: topRight),
                                             "inputBottomLeft": CIVector(cgPoint: bottomLeft),
                                             "inputBottomRight": CIVector(cgPoint: bottomRight)
             ])
-        return overlay.compositingOverImage(image)
+        return overlay.composited(over: image)
     }
-    func setEnableTorch(flashMode: AVCaptureFlashMode, device: AVCaptureDevice) {
+    func setEnableTorch(flashMode: AVCaptureDevice.FlashMode, device: AVCaptureDevice) {
         
         let device: AVCaptureDevice? = self.captureDevice
         if (device?.hasFlash)! && (device?.isFlashModeSupported(flashMode))! {

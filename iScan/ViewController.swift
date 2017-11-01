@@ -25,15 +25,20 @@ extension UIInterfaceOrientation {
 
 class ViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate, UIImagePickerControllerDelegate {
     
+    
+    @IBOutlet weak var toggleTorch: UIButton!
+    @IBOutlet weak var bottomMessageLabelConstraint: NSLayoutConstraint!
+    @IBOutlet weak var bottomTollbarConstraint: NSLayoutConstraint!
     @IBOutlet weak var bannerView: GADBannerView!
-    @IBOutlet weak var stackView: UIStackView!
+    //@IBOutlet weak var stackView: UIStackView!
     @IBOutlet weak var lightAction: UIBarButtonItem!
     @IBOutlet weak var doneAction: UIBarButtonItem!
     @IBOutlet weak var messageLabel: UILabel!
-    @IBOutlet weak var topbar: UINavigationBar!
-    @IBOutlet weak var selectorAction: UISegmentedControl!
-    @IBOutlet weak var selectorView: UIView!
-    @IBOutlet weak var focusIndicator: UIImageView!
+    //@IBOutlet weak var topbar: UINavigationBar!
+    //@IBOutlet weak var selectorAction: UISegmentedControl!
+    //@IBOutlet weak var selectorView: UIView!
+    //@IBOutlet weak var focusIndicator: UIImageView!
+    @IBOutlet weak var toolbar: UIToolbar!
    
     var captureDevice: AVCaptureDevice!
     var objTableView = TableVController()
@@ -41,20 +46,21 @@ class ViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate, 
     var captureSession:AVCaptureSession?
     var videoPreviewLayer:AVCaptureVideoPreviewLayer?
     var qrCodeFrameView:UIView?
+    var isPurchased = true
     
-    let supportedCodeTypes = [AVMetadataObjectTypeUPCECode,
-                              AVMetadataObjectTypeCode39Code,
-                              AVMetadataObjectTypeCode39Mod43Code,
-                              AVMetadataObjectTypeCode93Code,
-                              AVMetadataObjectTypeCode128Code,
-                              AVMetadataObjectTypeEAN8Code,
-                              AVMetadataObjectTypeEAN13Code,
-                              AVMetadataObjectTypeAztecCode,
-                              AVMetadataObjectTypePDF417Code,
-                              AVMetadataObjectTypeDataMatrixCode,
-                              AVMetadataObjectTypeITF14Code,
-                              AVMetadataObjectTypeInterleaved2of5Code,
-                              AVMetadataObjectTypeQRCode]
+    let supportedCodeTypes = [AVMetadataObject.ObjectType.upce,
+                              AVMetadataObject.ObjectType.code39,
+                              AVMetadataObject.ObjectType.code39Mod43,
+                              AVMetadataObject.ObjectType.code93,
+                              AVMetadataObject.ObjectType.code128,
+                              AVMetadataObject.ObjectType.ean8,
+                              AVMetadataObject.ObjectType.ean13,
+                              AVMetadataObject.ObjectType.aztec,
+                              AVMetadataObject.ObjectType.pdf417,
+                              AVMetadataObject.ObjectType.dataMatrix,
+                              AVMetadataObject.ObjectType.itf14,
+                              AVMetadataObject.ObjectType.interleaved2of5,
+                              AVMetadataObject.ObjectType.qr]
     
     
     // Loads the view controller when the scan button is tapped in the orignal view controller
@@ -63,13 +69,27 @@ class ViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate, 
         bannerView.adUnitID = "ca-app-pub-7317713550657480/5127447259"
         bannerView.rootViewController = self
         bannerView.load(GADRequest())
+        let screenRect = UIScreen.main.bounds
+        let screenHieght = screenRect.size.height
+        isPurchased = iScanProducts.store.isProductPurchased(iScanProducts.RemoveAds)
+        if isPurchased == false {
+            self.toolbar.frame.origin.y = screenHieght - 170
+            self.bottomTollbarConstraint.constant = 50
+            self.bottomMessageLabelConstraint.constant = 69
+            
+        }
+        else {
+            bannerView.isHidden = true
+        }
         
     }
     override func viewDidAppear(_ animated: Bool) {
         start()
-        view.bringSubview(toFront: bannerView)        
-        view.bringSubview(toFront: selectorView)
-        view.bringSubview(toFront: stackView)
+        view.bringSubview(toFront: toolbar)
+        view.bringSubview(toFront: messageLabel)
+        view.bringSubview(toFront: bannerView)
+        adViewDidReceiveAd(bannerView)
+        
     }
     
     
@@ -78,16 +98,17 @@ class ViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate, 
     }
     func adViewDidReceiveAd(_ bannerView: GADBannerView!) {
         print("Banner loaded successfully")
+        
     }
     func adView(_ bannerView: GADBannerView!, didFailToReceiveAdWithError error: GADRequestError!) {
         print("Fail to receive ads")
         print(error)
     }
     func start() {
-        let captureDevice = AVCaptureDevice.defaultDevice(withMediaType: AVMediaTypeVideo)
+        let captureDevice = AVCaptureDevice.default(for: AVMediaType.video)
         // Turns the camera on when the scan button is tapped in the original view controller
         do {
-            let input = try AVCaptureDeviceInput(device: captureDevice)
+            let input = try AVCaptureDeviceInput(device: captureDevice!)
             captureSession = AVCaptureSession()
             
             captureSession?.addInput(input)
@@ -96,13 +117,14 @@ class ViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate, 
             captureSession?.addOutput(captureMetadataOutput)
             captureMetadataOutput.setMetadataObjectsDelegate(self, queue: DispatchQueue.main)
             captureMetadataOutput.metadataObjectTypes = supportedCodeTypes
-            videoPreviewLayer = AVCaptureVideoPreviewLayer(session: captureSession)
-            videoPreviewLayer?.videoGravity = AVLayerVideoGravityResizeAspectFill
+            videoPreviewLayer = AVCaptureVideoPreviewLayer(session: captureSession!)
+            videoPreviewLayer?.videoGravity = AVLayerVideoGravity.resizeAspectFill
             videoPreviewLayer?.frame = view.layer.bounds
             view.layer.addSublayer(videoPreviewLayer!)
             captureSession?.startRunning()
+            
+            view.bringSubview(toFront: toolbar)
             view.bringSubview(toFront: messageLabel!)
-            view.bringSubview(toFront: topbar)
             
             qrCodeFrameView = UIView()
             // Sets the color and bounds of the frame when scanning a barcode
@@ -122,7 +144,7 @@ class ViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate, 
         guard let previewLayer = self.videoPreviewLayer else {
             return
         }
-        guard previewLayer.connection.isVideoOrientationSupported else {
+        guard (previewLayer.connection?.isVideoOrientationSupported)! else {
             print("isVideoOrientationSupported is false")
             return
         }
@@ -130,13 +152,13 @@ class ViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate, 
         let statusBarOrientation = UIApplication.shared.statusBarOrientation
         let videoOrientation: AVCaptureVideoOrientation = statusBarOrientation.videoOrientation ?? .portrait
         
-        if previewLayer.connection.videoOrientation == videoOrientation {
+        if previewLayer.connection?.videoOrientation == videoOrientation {
             print("no change to videoOrientation")
             return
         }
         
         previewLayer.frame = view.bounds
-        previewLayer.connection.videoOrientation = videoOrientation
+        previewLayer.connection?.videoOrientation = videoOrientation
         previewLayer.removeAllAnimations()
     }
     
@@ -161,15 +183,15 @@ class ViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate, 
         self.dismiss(animated: true, completion: nil)
     }
     // Captures the output of the camera and allows the camera the ability to read barcodes
-    func captureOutput(_ captureOutput: AVCaptureOutput!, didOutputMetadataObjects metadataObjects: [Any]!, from connection: AVCaptureConnection!) {
+    func metadataOutput(captureOutput: AVCaptureMetadataOutput, didOutput metadataObjects: [AVMetadataObject]?, from connection: AVCaptureConnection) {
         // Sets the message label to "No Barcode is detected" when nothing is being scanned
-        if metadataObjects == nil || metadataObjects.count == 0 {
+        if metadataObjects == nil || metadataObjects?.count == 0 {
             qrCodeFrameView?.frame = CGRect.zero
             messageLabel?.text = "No barcode detected" ; dismissAlert()
             return
         }
         // Sets the message label to the output of the scanned item
-        let metadataObj = metadataObjects[0] as! AVMetadataMachineReadableCodeObject
+        let metadataObj = metadataObjects![0] as! AVMetadataMachineReadableCodeObject
         if supportedCodeTypes.contains(metadataObj.type) {
             let barCodeObject = videoPreviewLayer?.transformedMetadataObject(for: metadataObj as AVMetadataMachineReadableCodeObject) as! AVMetadataMachineReadableCodeObject
             qrCodeFrameView?.frame = barCodeObject.bounds
@@ -184,13 +206,19 @@ class ViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate, 
         toggleFlash()
     }
     func toggleFlash() {
-        if let device = AVCaptureDevice.defaultDevice(withMediaType: AVMediaTypeVideo), device.hasTorch {
+        if let device = AVCaptureDevice.default(for: AVMediaType.video), device.hasTorch {
             do {
                 try device.lockForConfiguration()
                 let torchOn = !device.isTorchActive
-                try device.setTorchModeOnWithLevel(1.0)
+                try device.setTorchModeOn(level: 1.0)
                 device.torchMode = torchOn ? .on : .off
                 device.unlockForConfiguration()
+                if device.isTorchActive == true {
+                    toggleTorch.setImage(#imageLiteral(resourceName: "torch_off"), for: UIControlState.normal)
+                }
+                else {
+                    toggleTorch.setImage(#imageLiteral(resourceName: "torch_on"), for: UIControlState.normal)
+                }
             } catch {
                 print("error")
             }
@@ -237,8 +265,9 @@ class ViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate, 
         }
     // Closes the View Controller when the Done Button is tapped
     @IBAction func doneAction(_ sender: Any) {
-        dismissAlert()
+        self.navigationController?.popViewController(animated: true)
     }
+    /*
     @IBAction func selectorAction(_ sender: UISegmentedControl) {
         switch selectorAction.selectedSegmentIndex{
         case 0:
@@ -251,6 +280,7 @@ class ViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate, 
         }
     
     }
+    */
     
 }
 

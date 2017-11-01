@@ -12,13 +12,18 @@ import Firebase
 
 class DocumentViewController: UIViewController {
     
-    
+    var isPurchase = false
     var tableView = TableViewController()
     var documentsDirectories: String!
     var newImage: UIImage!
     var alertController = UIAlertController()
     @IBOutlet weak var documentImage: UIImageView!
     @IBOutlet weak var bannerView: GADBannerView!
+    
+    
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return UIStatusBarStyle.lightContent
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -39,6 +44,10 @@ class DocumentViewController: UIViewController {
                 print("Something went wrong while creating a new folder")
             }
         
+        }
+        isPurchase = iScanProducts.store.isProductPurchased(iScanProducts.RemoveAds)
+        if isPurchase == true {
+            bannerView.isHidden = true
         }
         
         /*
@@ -90,6 +99,9 @@ class DocumentViewController: UIViewController {
         */
         // Do any additional setup after loading the view.
     }
+    
+    
+    
     func adViewDidReceiveAd(_ bannerView: GADBannerView!) {
         print("Banner loaded successfully")
     }

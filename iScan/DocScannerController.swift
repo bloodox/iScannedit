@@ -48,6 +48,7 @@ class DocScannerController: UIViewController {
         adViewDidReceiveAd(bannerView)
         let screenRect = UIScreen.main.bounds
         let screenHieght = screenRect.size.height
+        isPurchase = iScanProducts.store.isProductPurchased(iScanProducts.RemoveAds)
         if isPurchase == false {
             self.toolbar.frame.origin.y = screenHieght - 170
             self.cameraViewBottom.constant = 50
@@ -65,17 +66,9 @@ class DocScannerController: UIViewController {
         
         
     }
+    
     func adViewDidReceiveAd(_ bannerView: GADBannerView!) {
         print("Banner loaded successfully")
-        let screenRect = UIScreen.main.bounds
-        let screenHieght = screenRect.size.height
-        if isPurchase == false {
-            self.toolbar.frame.origin.y = screenHieght - 170
-            self.cameraViewBottom.constant = 50
-        }
-        else {
-            bannerView.isHidden = true
-        }
     }
     
     func adView(_ bannerView: GADBannerView!, didFailToReceiveAdWithError error: GADRequestError!) {
@@ -98,7 +91,7 @@ class DocScannerController: UIViewController {
         guard let previewLayer = self.videoPreviewLayer else {
             return
         }
-        guard previewLayer.connection.isVideoOrientationSupported else {
+        guard (previewLayer.connection?.isVideoOrientationSupported)! else {
             print("isVideoOrientationSupported is false")
             return
         }
@@ -106,13 +99,13 @@ class DocScannerController: UIViewController {
         let statusBarOrientation = UIApplication.shared.statusBarOrientation
         let videoOrientation: AVCaptureVideoOrientation = statusBarOrientation.videoOrientation ?? .portrait
         
-        if previewLayer.connection.videoOrientation == videoOrientation {
+        if previewLayer.connection?.videoOrientation == videoOrientation {
             print("no change to videoOrientation")
             return
         }
         
         previewLayer.frame = view.bounds
-        previewLayer.connection.videoOrientation = videoOrientation
+        previewLayer.connection?.videoOrientation = videoOrientation
         previewLayer.removeAllAnimations()
     }
     
@@ -211,7 +204,7 @@ class DocScannerController: UIViewController {
         })
     }
     
-    func dismissPreview(_ dismissTap: UITapGestureRecognizer) {
+    @objc func dismissPreview(_ dismissTap: UITapGestureRecognizer) {
         UIView.animate(withDuration: 0.7, delay: 0.0, usingSpringWithDamping: 0.8, initialSpringVelocity: 1.0, options: .allowUserInteraction, animations: {() -> Void in
             dismissTap.view?.frame = self.view.bounds.offsetBy(dx: CGFloat(0), dy: CGFloat(self.view.bounds.size.height))
         }, completion: {(_ finished: Bool) -> Void in
@@ -236,11 +229,11 @@ class DocScannerController: UIViewController {
     }
     
     func toggleFlash() {
-        if let device = AVCaptureDevice.defaultDevice(withMediaType: AVMediaTypeVideo), device.hasTorch {
+        if let device = AVCaptureDevice.default(for: AVMediaType.video), device.hasTorch {
             do {
                 try device.lockForConfiguration()
                 let torchOn = !device.isTorchActive
-                try device.setTorchModeOnWithLevel(1.0)
+                try device.setTorchModeOn(level: 1.0)
                 device.torchMode = torchOn ? .on : .off
                 device.unlockForConfiguration()
                 if device.isTorchActive == true {

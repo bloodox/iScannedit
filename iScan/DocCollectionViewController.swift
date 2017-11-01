@@ -83,7 +83,7 @@ class DocCollectionViewController: UICollectionViewController, UIImagePickerCont
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    func refreshTable(){
+    @objc func refreshTable(){
         do{
             images.removeAll()
             titles = try FileManager.default.contentsOfDirectory(atPath: documentsDirectories)

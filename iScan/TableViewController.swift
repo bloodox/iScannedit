@@ -22,6 +22,7 @@ class TableViewController: UITableViewController, UIImagePickerControllerDelegat
     var images:[UIImage]!
     var titles:[String]!
     var titleFiles = [TitleFile]()
+    var isPurchased = false
     
     @IBAction func choosePhoto(_ sender: AnyObject) {
         let imagePicker = UIImagePickerController()
@@ -53,6 +54,10 @@ class TableViewController: UITableViewController, UIImagePickerControllerDelegat
         }
         refreshTable()
         NotificationCenter.default.addObserver(self, selector: #selector(TableViewController.refreshTable),name:NSNotification.Name(rawValue: "load"), object: nil)
+        isPurchased = iScanProducts.store.isProductPurchased(iScanProducts.RemoveAds)
+        if isPurchased == true {
+            bannerView.isHidden = true
+        }
     }
     
     override func didReceiveMemoryWarning() {
@@ -60,7 +65,7 @@ class TableViewController: UITableViewController, UIImagePickerControllerDelegat
         // Dispose of any resources that can be recreated.
     }
     
-    func refreshTable(){
+    @objc func refreshTable(){
                 do{
             images.removeAll()
             titles = try FileManager.default.contentsOfDirectory(atPath: documentsDirectories)

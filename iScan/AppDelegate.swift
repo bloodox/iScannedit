@@ -18,8 +18,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
-        FIRApp.configure()
-        GADMobileAds.configure(withApplicationID: "ca-app-pub-7317713550657480/5127447259")
+        DispatchQueue.main.async {
+            FIRApp.configure()
+            GADMobileAds.configure(withApplicationID: "ca-app-pub-7317713550657480/5127447259")
+        }
         
         return true
     }

@@ -9,6 +9,7 @@
 import UIKit
 import Social
 import Firebase
+import StoreKit
 
 var qrcodeImage: CIImage!
 var genImage: UIImage!
@@ -24,26 +25,27 @@ class GenerateViewController: UIViewController {
     @IBOutlet weak var imgQRCode: UIImageView!
     @IBOutlet weak var genAction: UIButton!
     var documentsDirectories:String!
+    var isPurchased = false
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         bannerView.adUnitID = "ca-app-pub-7317713550657480/5127447259"
         bannerView.rootViewController = self
         bannerView.load(GADRequest())
-        
         if qrcodeImage == nil {
             slider.isHidden = true
         }
         else  {
             slider.isHidden = false
         }
-        
-        
+        isPurchased = iScanProducts.store.isProductPurchased(iScanProducts.RemoveAds)
+        if isPurchased == true {
+            bannerView.isHidden = true
+        }
         // Do any additional setup after loading the view.
     }
-
-    
-    
+        
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         let alertController = UIAlertController(title: "", message: "Your device is low on memory. Please close other applications.", preferredStyle: .alert)
@@ -53,6 +55,10 @@ class GenerateViewController: UIViewController {
         
         
         // Dispose of any resources that can be recreated.
+    }
+    
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return UIStatusBarStyle.lightContent
     }
     
     @IBAction func performButtonAction(_ sender: AnyObject) {
@@ -83,7 +89,7 @@ class GenerateViewController: UIViewController {
     func displayQRCodeImage() {
         let scaleX = imgQRCode.frame.size.width / qrcodeImage.extent .size.width
         let scaleY = imgQRCode.frame.size.height / qrcodeImage.extent .size.height
-        let transformedImage = qrcodeImage.applying(CGAffineTransform(scaleX: scaleX, y: scaleY))
+        let transformedImage = qrcodeImage.transformed(by: CGAffineTransform(scaleX: scaleX, y: scaleY))
         imgQRCode.image = UIImage(ciImage: transformedImage)
  
     }
@@ -122,7 +128,7 @@ class GenerateViewController: UIViewController {
             let scaleX = imgQRCode.frame.size.width
             let scaleY = imgQRCode.frame.size.height
             let transformImage = CGAffineTransform(scaleX: scaleX, y: scaleY)
-            let upScaledImage = filter.outputImage?.applying(transformImage)
+            let upScaledImage = filter.outputImage?.transformed(by: transformImage)
             let cgImage = ciContext.createCGImage(upScaledImage!, from: upScaledImage!.extent)
             genImage = UIImage(cgImage: cgImage!)
             return genImage
