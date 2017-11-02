@@ -25,11 +25,11 @@
 		F241B7D01ED726F80021E8F9 /* ProductCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F241B7CF1ED726F80021E8F9 /* ProductCell.swift */; };
 		F241B7D21ED73D3F0021E8F9 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F241B7D11ED73D3F0021E8F9 /* StoreKit.framework */; };
 		F24264411EBA2859002EF5B5 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F24264401EBA2859002EF5B5 /* GoogleService-Info.plist */; };
+		F24494A51FAB239900AC4037 /* SaveScan.xcdatamodel in Sources */ = {isa = PBXBuildFile; fileRef = F24494A41FAB239800AC4037 /* SaveScan.xcdatamodel */; };
 		F2734C2B1ED0942D00B8FD5F /* DocumentCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2734C2A1ED0942D00B8FD5F /* DocumentCollectionViewController.swift */; };
 		F27BDDF31ED2AFEB007D9E23 /* iScanProducts.swift in Sources */ = {isa = PBXBuildFile; fileRef = F27BDDF21ED2AFEB007D9E23 /* iScanProducts.swift */; };
 		F27BDDF51ED2AFF6007D9E23 /* IAPHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = F27BDDF41ED2AFF6007D9E23 /* IAPHelper.swift */; };
 		F286ADEC1E6A0BAD00FE1043 /* DocScannerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F286ADEB1E6A0BAD00FE1043 /* DocScannerViewController.swift */; };
-		F2B59E5E1FAA0C67004F7EF3 /* SaveScan.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = F2B59E5C1FAA0C67004F7EF3 /* SaveScan.xcdatamodeld */; };
 		F2B59E641FAA0D6B004F7EF3 /* DocScannerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2B59E631FAA0D6B004F7EF3 /* DocScannerController.swift */; };
 		F2BD659F1ED8CF5900BD3211 /* BarcodeTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2BD659E1ED8CF5900BD3211 /* BarcodeTableViewController.swift */; };
 /* End PBXBuildFile section */
@@ -56,11 +56,11 @@
 		F241B7CF1ED726F80021E8F9 /* ProductCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProductCell.swift; sourceTree = "<group>"; };
 		F241B7D11ED73D3F0021E8F9 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		F24264401EBA2859002EF5B5 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		F24494A41FAB239800AC4037 /* SaveScan.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = SaveScan.xcdatamodel; sourceTree = "<group>"; };
 		F2734C2A1ED0942D00B8FD5F /* DocumentCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DocumentCollectionViewController.swift; sourceTree = "<group>"; };
 		F27BDDF21ED2AFEB007D9E23 /* iScanProducts.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = iScanProducts.swift; sourceTree = "<group>"; };
 		F27BDDF41ED2AFF6007D9E23 /* IAPHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IAPHelper.swift; sourceTree = "<group>"; };
 		F286ADEB1E6A0BAD00FE1043 /* DocScannerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DocScannerViewController.swift; sourceTree = "<group>"; };
-		F2B59E5D1FAA0C67004F7EF3 /* SaveScan.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = SaveScan.xcdatamodel; sourceTree = "<group>"; };
 		F2B59E631FAA0D6B004F7EF3 /* DocScannerController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DocScannerController.swift; sourceTree = "<group>"; };
 		F2BD659E1ED8CF5900BD3211 /* BarcodeTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BarcodeTableViewController.swift; sourceTree = "<group>"; };
 		F2E47A671EBE526B00B5BE56 /* iScan.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = iScan.entitlements; sourceTree = "<group>"; };
@@ -149,8 +149,8 @@
 				F221CB841ED680B400D01C88 /* MenuViewController.swift */,
 				F221CB821ED6801C00D01C88 /* SideRevealViewController.swift */,
 				F27BDDF41ED2AFF6007D9E23 /* IAPHelper.swift */,
+				F24494A41FAB239800AC4037 /* SaveScan.xcdatamodel */,
 				F2E47A671EBE526B00B5BE56 /* iScan.entitlements */,
-				F2B59E5C1FAA0C67004F7EF3 /* SaveScan.xcdatamodeld */,
 				AADCCC991E37005A00B4488E /* Main.storyboard */,
 				AAE914611E25D65D000F25C1 /* LaunchScreen.storyboard */,
 				AAE9145F1E25D65D000F25C1 /* Assets.xcassets */,
@@ -313,6 +313,7 @@
 				AA77384E1E556CCA0096306B /* TableViewController.swift in Sources */,
 				F2BD659F1ED8CF5900BD3211 /* BarcodeTableViewController.swift in Sources */,
 				AADCCC981E36FC1D00B4488E /* TableVController.swift in Sources */,
+				F24494A51FAB239900AC4037 /* SaveScan.xcdatamodel in Sources */,
 				AA75CFE31E27DE5300572122 /* GenerateViewController.swift in Sources */,
 				AA35A3B21E49B77700DFA339 /* DocumentViewController.swift in Sources */,
 				F2B59E641FAA0D6B004F7EF3 /* DocScannerController.swift in Sources */,
@@ -321,7 +322,6 @@
 				AA859C211E4E7D1B0080F046 /* CollectionViewCell.swift in Sources */,
 				AAE914591E25D65D000F25C1 /* AppDelegate.swift in Sources */,
 				F221CB851ED680B400D01C88 /* MenuViewController.swift in Sources */,
-				F2B59E5E1FAA0C67004F7EF3 /* SaveScan.xcdatamodeld in Sources */,
 				AA859C1B1E4E64240080F046 /* DocCollectionViewController.swift in Sources */,
 				F221CB831ED6801C00D01C88 /* SideRevealViewController.swift in Sources */,
 				F27BDDF31ED2AFEB007D9E23 /* iScanProducts.swift in Sources */,
@@ -533,20 +533,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCVersionGroup section */
-		F2B59E5C1FAA0C67004F7EF3 /* SaveScan.xcdatamodeld */ = {
-			isa = XCVersionGroup;
-			children = (
-				F2B59E5D1FAA0C67004F7EF3 /* SaveScan.xcdatamodel */,
-			);
-			currentVersion = F2B59E5D1FAA0C67004F7EF3 /* SaveScan.xcdatamodel */;
-			name = SaveScan.xcdatamodeld;
-			path = ../../../../Documents/iScannedit/iScan/iScan/SaveScan.xcdatamodeld;
-			sourceTree = "<group>";
-			versionGroupType = wrapper.xcdatamodel;
-		};
-/* End XCVersionGroup section */
 	};
 	rootObject = AAE9144D1E25D65D000F25C1 /* Project object */;
 }
