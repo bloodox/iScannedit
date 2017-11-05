@@ -18,6 +18,7 @@ let appRatingShown = "co.jwenterprises.carpentryplus25.app_rating_shown"
     var application: UIApplication!
     var userDefaults = UserDefaults()
     let requiredNumberOfLaunchesBeforeRating = 2
+    
     public var appID: String!
     
     @objc public static var sharedInstance = APIRateApp()

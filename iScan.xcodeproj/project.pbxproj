@@ -28,13 +28,13 @@
 		F221CB851ED680B400D01C88 /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F221CB841ED680B400D01C88 /* MenuViewController.swift */; };
 		F241B7D01ED726F80021E8F9 /* ProductCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F241B7CF1ED726F80021E8F9 /* ProductCell.swift */; };
 		F241B7D21ED73D3F0021E8F9 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F241B7D11ED73D3F0021E8F9 /* StoreKit.framework */; };
-		F24264411EBA2859002EF5B5 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F24264401EBA2859002EF5B5 /* GoogleService-Info.plist */; };
 		F24494A51FAB239900AC4037 /* SaveScan.xcdatamodel in Sources */ = {isa = PBXBuildFile; fileRef = F24494A41FAB239800AC4037 /* SaveScan.xcdatamodel */; };
 		F2734C2B1ED0942D00B8FD5F /* DocumentCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2734C2A1ED0942D00B8FD5F /* DocumentCollectionViewController.swift */; };
 		F27BDDF31ED2AFEB007D9E23 /* iScanProducts.swift in Sources */ = {isa = PBXBuildFile; fileRef = F27BDDF21ED2AFEB007D9E23 /* iScanProducts.swift */; };
 		F27BDDF51ED2AFF6007D9E23 /* IAPHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = F27BDDF41ED2AFF6007D9E23 /* IAPHelper.swift */; };
 		F286ADEC1E6A0BAD00FE1043 /* DocScannerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F286ADEB1E6A0BAD00FE1043 /* DocScannerViewController.swift */; };
 		F2B59E641FAA0D6B004F7EF3 /* DocScannerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2B59E631FAA0D6B004F7EF3 /* DocScannerController.swift */; };
+		F2BD31871FAEA783001F4F13 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F2BD31861FAEA783001F4F13 /* GoogleService-Info.plist */; };
 		F2BD659F1ED8CF5900BD3211 /* BarcodeTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2BD659E1ED8CF5900BD3211 /* BarcodeTableViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -87,13 +87,13 @@
 		F221CB841ED680B400D01C88 /* MenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
 		F241B7CF1ED726F80021E8F9 /* ProductCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProductCell.swift; sourceTree = "<group>"; };
 		F241B7D11ED73D3F0021E8F9 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
-		F24264401EBA2859002EF5B5 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		F24494A41FAB239800AC4037 /* SaveScan.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = SaveScan.xcdatamodel; sourceTree = "<group>"; };
 		F2734C2A1ED0942D00B8FD5F /* DocumentCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DocumentCollectionViewController.swift; sourceTree = "<group>"; };
 		F27BDDF21ED2AFEB007D9E23 /* iScanProducts.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = iScanProducts.swift; sourceTree = "<group>"; };
 		F27BDDF41ED2AFF6007D9E23 /* IAPHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IAPHelper.swift; sourceTree = "<group>"; };
 		F286ADEB1E6A0BAD00FE1043 /* DocScannerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DocScannerViewController.swift; sourceTree = "<group>"; };
 		F2B59E631FAA0D6B004F7EF3 /* DocScannerController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DocScannerController.swift; sourceTree = "<group>"; };
+		F2BD31861FAEA783001F4F13 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		F2BD659E1ED8CF5900BD3211 /* BarcodeTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BarcodeTableViewController.swift; sourceTree = "<group>"; };
 		F2E47A671EBE526B00B5BE56 /* iScan.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = iScan.entitlements; sourceTree = "<group>"; };
 		F7DFDD291BD2B79926BD0192 /* Pods-iScan.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iScan.debug.xcconfig"; path = "Pods/Target Support Files/Pods-iScan/Pods-iScan.debug.xcconfig"; sourceTree = "<group>"; };
@@ -196,7 +196,7 @@
 				AADCCC991E37005A00B4488E /* Main.storyboard */,
 				AAE914611E25D65D000F25C1 /* LaunchScreen.storyboard */,
 				AAE9145F1E25D65D000F25C1 /* Assets.xcassets */,
-				F24264401EBA2859002EF5B5 /* GoogleService-Info.plist */,
+				F2BD31861FAEA783001F4F13 /* GoogleService-Info.plist */,
 				AAE914641E25D65D000F25C1 /* Info.plist */,
 				AA859C241E4E9C8B0080F046 /* Barcode reading */,
 				AA859C231E4E9C620080F046 /* Doc Scanning */,
@@ -335,7 +335,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				AADCCC9B1E37005A00B4488E /* Main.storyboard in Resources */,
-				F24264411EBA2859002EF5B5 /* GoogleService-Info.plist in Resources */,
+				F2BD31871FAEA783001F4F13 /* GoogleService-Info.plist in Resources */,
 				AAE914631E25D65D000F25C1 /* LaunchScreen.storyboard in Resources */,
 				AAE914601E25D65D000F25C1 /* Assets.xcassets in Resources */,
 			);

@@ -230,14 +230,16 @@ class MainViewController: UIViewController, UIImagePickerControllerDelegate, UIN
 
     }
     
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingImage image: UIImage, editingInfo: [String : AnyObject]?) {
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+        if let image = info[UIImagePickerControllerOriginalImage] as? UIImage {
         
         // Save image to Document directory
-        let directory = documentsDirectories.appending("/iScan_\(Int(Date().timeIntervalSince1970)).pdf")
-        let data = UIImageJPEGRepresentation(image, 0.8)
-        _ = FileManager.default.createFile(atPath: directory, contents: data, attributes: nil)
-        dismiss(animated: true) { () -> Void in
-            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "load"), object: nil)
+            let directory = documentsDirectories.appending("/iScan_\(Int(Date().timeIntervalSince1970)).pdf")
+            let data = UIImageJPEGRepresentation(image, 0.8)
+            _ = FileManager.default.createFile(atPath: directory, contents: data, attributes: nil)
+            dismiss(animated: true) { () -> Void in
+                NotificationCenter.default.post(name: NSNotification.Name(rawValue: "load"), object: nil)
+            }
         }
     }
     

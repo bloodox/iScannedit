@@ -21,10 +21,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         let rateApp = APIRateApp.sharedInstance
         rateApp.appID = "1203986760"
-        DispatchQueue.main.async {
-            FIRApp.configure()
-            GADMobileAds.configure(withApplicationID: "ca-app-pub-7317713550657480/5127447259")
-        }
+        FIRApp.configure()
+        GADMobileAds.configure(withApplicationID: "ca-app-pub-7317713550657480/5127447259")
+       
         
         return true
     }

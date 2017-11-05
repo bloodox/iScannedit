@@ -85,14 +85,15 @@ class TableViewController: UITableViewController, UIImagePickerControllerDelegat
     
     
     //MARK: UIImagePickerControllerDelegate Protocol
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingImage image: UIImage, editingInfo: [String : AnyObject]?) {
-        
-        // Save image to Document directory
-        let directory = documentsDirectories.appending("/iScan_\(Int(Date().timeIntervalSince1970)).pdf")
-        let data = UIImageJPEGRepresentation(image, 0.8)
-        _ = FileManager.default.createFile(atPath: directory, contents: data, attributes: nil)
-        dismiss(animated: true) { () -> Void in
-            self.refreshTable()
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+        if let image = info[UIImagePickerControllerOriginalImage] as? UIImage {
+            // Save image to Document directory
+            let directory = documentsDirectories.appending("/iScan_\(Int(Date().timeIntervalSince1970)).pdf")
+            let data = UIImageJPEGRepresentation(image, 0.8)
+            _ = FileManager.default.createFile(atPath: directory, contents: data, attributes: nil)
+            dismiss(animated: true) { () -> Void in
+                self.refreshTable()
+            }
         }
     }
  
@@ -165,6 +166,9 @@ class TableViewController: UITableViewController, UIImagePickerControllerDelegat
     }
 
 }
+
+
+
 /*
  
 
