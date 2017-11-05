@@ -9,6 +9,7 @@
 import UIKit
 import CoreData
 import Firebase
+import RateApp
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -18,6 +19,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        let rateApp = APIRateApp.sharedInstance
+        rateApp.appID = "1203986760"
         DispatchQueue.main.async {
             FIRApp.configure()
             GADMobileAds.configure(withApplicationID: "ca-app-pub-7317713550657480/5127447259")
