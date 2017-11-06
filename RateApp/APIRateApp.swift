@@ -127,7 +127,8 @@ let appRatingShown = "co.jwenterprises.carpentryplus25.app_rating_shown"
             
         })
     }
-    
+    /*
+    //Uncomment the following section to support older devices
     // Mark: versions older than iOS 8.0 likely to remove support later
     private func rateTheAppOldVersion() {
         let appName = Bundle(for: type(of: application.delegate!)).infoDictionary!["CFBundleName"] as? String
@@ -146,5 +147,6 @@ let appRatingShown = "co.jwenterprises.carpentryplus25.app_rating_shown"
         UIApplication.shared.openURL(url! as URL)
         
     }
+     */
 
 }
