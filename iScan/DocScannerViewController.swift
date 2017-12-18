@@ -433,8 +433,10 @@ class DocScannerViewController: UIView, AVCaptureVideoDataOutputSampleBufferDele
                 EAGLContext.setCurrent(self.context)
             }
             self.glkView?.bindDrawable()
+            DispatchQueue.main.async {
+                self.coreImageContext?.draw(image, in: self.bounds, from: self.cropRect(forPreviewImage: image))
+            }
             
-            self.coreImageContext?.draw(image, in: self.bounds, from: self.cropRect(forPreviewImage: image))
             
             
             self.glkView?.display()
@@ -448,15 +450,16 @@ class DocScannerViewController: UIView, AVCaptureVideoDataOutputSampleBufferDele
         }
     }
     /*
-     // This function isn't used
-     func _intrinsicContentSize() -> CGSize {
-     if self.intrinsicContentSizes.width == 0 || self.intrinsicContentSizes.height == 0 {
-     return CGSize(width: CGFloat(1), height: CGFloat(1))
-     //just enough so rendering doesn't crash
-     }
-     return self.intrinsicContentSizes
-     }
-     */
+    // This function isn't used
+    func _intrinsicContentSize() -> CGSize {
+        if self.intrinsicContentSizes.width == 0 || self.intrinsicContentSizes.height == 0 {
+            return CGSize(width: CGFloat(1), height: CGFloat(1))
+            //just enough so rendering doesn't crash
+        }
+    return self.intrinsicContentSizes
+    }
+    */
+    
     func drawHighlightOverlay(forPoints image: CIImage, topLeft: CGPoint, topRight: CGPoint, bottomLeft: CGPoint, bottomRight: CGPoint) -> CIImage {
         var overlay = CIImage(color: CIColor(red: 0.0, green: 0.8, blue: 1.0, alpha: 0.4))
         overlay = overlay.cropped(to: image.extent)

@@ -25,21 +25,17 @@ extension UIInterfaceOrientation {
 
 class ViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate, UIImagePickerControllerDelegate {
     
-    
+    // Mark: Outlet Properties
     @IBOutlet weak var toggleTorch: UIButton!
     @IBOutlet weak var bottomMessageLabelConstraint: NSLayoutConstraint!
     @IBOutlet weak var bottomTollbarConstraint: NSLayoutConstraint!
     @IBOutlet weak var bannerView: GADBannerView!
-    //@IBOutlet weak var stackView: UIStackView!
     @IBOutlet weak var lightAction: UIBarButtonItem!
     @IBOutlet weak var doneAction: UIBarButtonItem!
     @IBOutlet weak var messageLabel: UILabel!
-    //@IBOutlet weak var topbar: UINavigationBar!
-    //@IBOutlet weak var selectorAction: UISegmentedControl!
-    //@IBOutlet weak var selectorView: UIView!
-    //@IBOutlet weak var focusIndicator: UIImageView!
     @IBOutlet weak var toolbar: UIToolbar!
    
+    // Mark: Variables
     var captureDevice: AVCaptureDevice!
     var objTableView = TableVController()
     var alertController = UIAlertController()
@@ -83,6 +79,7 @@ class ViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate, 
         }
         
     }
+    
     override func viewDidAppear(_ animated: Bool) {
         start()
         view.bringSubview(toFront: toolbar)
@@ -92,18 +89,20 @@ class ViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate, 
         
     }
     
-    
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return UIStatusBarStyle.lightContent
     }
+    
     func adViewDidReceiveAd(_ bannerView: GADBannerView!) {
         print("Banner loaded successfully")
         
     }
+    
     func adView(_ bannerView: GADBannerView!, didFailToReceiveAdWithError error: GADRequestError!) {
         print("Fail to receive ads")
         print(error)
     }
+    
     func start() {
         let captureDevice = AVCaptureDevice.default(for: AVMediaType.video)
         // Turns the camera on when the scan button is tapped in the original view controller
@@ -140,6 +139,8 @@ class ViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate, 
             return
         }
     }
+    
+    
     func updateVideoOrientation() {
         guard let previewLayer = self.videoPreviewLayer else {
             return
@@ -161,6 +162,7 @@ class ViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate, 
         previewLayer.connection?.videoOrientation = videoOrientation
         previewLayer.removeAllAnimations()
     }
+ 
     
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
         super.viewWillTransition(to: size, with: coordinator)
@@ -175,36 +177,42 @@ class ViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate, 
     override func viewDidDisappear(_ animated: Bool) {
         
     }
+    
     // This function isn't usually used unless your app is consuming large amounts of memory on the device
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
+    
     func dismissAlert(){
         self.dismiss(animated: true, completion: nil)
     }
+    
+    // Mark: AVCaptureMetadataOutputObjectDelegate method
     // Captures the output of the camera and allows the camera the ability to read barcodes
-    func metadataOutput(captureOutput: AVCaptureMetadataOutput, didOutput metadataObjects: [AVMetadataObject]?, from connection: AVCaptureConnection) {
+    func metadataOutput(_ output: AVCaptureMetadataOutput, didOutput metadataObjects: [AVMetadataObject], from connection: AVCaptureConnection) {
         // Sets the message label to "No Barcode is detected" when nothing is being scanned
-        if metadataObjects == nil || metadataObjects?.count == 0 {
+        if metadataObjects.count == 0 {
             qrCodeFrameView?.frame = CGRect.zero
             messageLabel?.text = "No barcode detected" ; dismissAlert()
             return
         }
         // Sets the message label to the output of the scanned item
-        let metadataObj = metadataObjects![0] as! AVMetadataMachineReadableCodeObject
+        let metadataObj = metadataObjects[0] as! AVMetadataMachineReadableCodeObject
         if supportedCodeTypes.contains(metadataObj.type) {
             let barCodeObject = videoPreviewLayer?.transformedMetadataObject(for: metadataObj as AVMetadataMachineReadableCodeObject) as! AVMetadataMachineReadableCodeObject
             qrCodeFrameView?.frame = barCodeObject.bounds
             // Sets the label text to match the output of the scanned barcode and calls the goToWeb function I created
             if metadataObj.stringValue != nil {
                 messageLabel?.text = metadataObj.stringValue ; saveAlert() 
-                    }
-                }
             }
+        }
+    }
+    
     // Turns the camera flash on for a light in low light barcode reading when the light button is tapped
     @IBAction func lightAction(_ sender: Any) {
         toggleFlash()
     }
+    
     func toggleFlash() {
         if let device = AVCaptureDevice.default(for: AVMediaType.video), device.hasTorch {
             do {
@@ -230,7 +238,6 @@ class ViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate, 
             self.present(alertController, animated: true, completion: nil)
         }
     }
-    
     
     func saveAlert() {
         
@@ -262,25 +269,12 @@ class ViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate, 
         }
         goToWeb()
         self.present(alertController, animated: true, completion: nil)
-        }
+    }
+    
     // Closes the View Controller when the Done Button is tapped
     @IBAction func doneAction(_ sender: Any) {
         self.navigationController?.popViewController(animated: true)
     }
-    /*
-    @IBAction func selectorAction(_ sender: UISegmentedControl) {
-        switch selectorAction.selectedSegmentIndex{
-        case 0:
-            performSegue(withIdentifier: "segueBarcodeScan", sender: self)
-        case 1:
-
-            performSegue(withIdentifier: "segueDocScan", sender: self)
-        default:
-            break;
-        }
-    
-    }
-    */
     
 }
 

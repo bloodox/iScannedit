@@ -162,23 +162,6 @@ class DocScannerController: UIViewController {
         })
     }
     
-    func chnageTorchButtonImage() {
-        
-    }
-    
-    
-    /*
-    @IBAction func selectorAction(_ sender: UISegmentedControl) {
-        switch selectorAction.selectedSegmentIndex {
-            case 0:
-                performSegue(withIdentifier: "segueDocScan", sender: self)
-            case 1:
-                performSegue(withIdentifier: "segueBarcodeScan", sender: self)
-            default:
-                break;
-        }
-    }
-    */
     func changeButton(button: UIButton, targetTitle title: String, toStateEnabled enabled: Bool) {
         button.setTitle(title, for: .normal)
         button.setTitleColor((enabled) ? UIColor(red: 1, green: 0.81, blue: 0, alpha: 1) : UIColor.white, for: .normal)
@@ -267,10 +250,10 @@ class DocScannerController: UIViewController {
     }
     
     @IBAction func borderDetectToggle(_ sender: Any) {
-    let enable: Bool = !self.cameraViewController.enableBorderDetection
-    self.cameraViewController.enableBorderDetection = enable
-    self.updateTitleLabel()
-        self.changeButton(button: sender as! UIButton, targetTitle: (enable) ? "CROP On" : "CROP Off", toStateEnabled: enable)
+        let enable: Bool = !self.cameraViewController.enableBorderDetection
+        self.cameraViewController.enableBorderDetection = enable
+        self.updateTitleLabel()
+        //self.changeButton(button: sender as! UIButton, targetTitle: (enable) ? "CROP On" : "CROP Off", toStateEnabled: enable)
         if enable == true {
             cropToggle.setImage(#imageLiteral(resourceName: "crop_on-1"), for: UIControlState.normal)
         }
