@@ -433,11 +433,9 @@ class DocScannerViewController: UIView, AVCaptureVideoDataOutputSampleBufferDele
                 EAGLContext.setCurrent(self.context)
             }
             self.glkView?.bindDrawable()
-            DispatchQueue.main.async {
+            DispatchQueue.main.sync {
                 self.coreImageContext?.draw(image, in: self.bounds, from: self.cropRect(forPreviewImage: image))
             }
-            
-            
             
             self.glkView?.display()
             if self.intrinsicContentSizes.width != image.extent.size.width {

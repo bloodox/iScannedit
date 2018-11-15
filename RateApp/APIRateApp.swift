@@ -109,7 +109,7 @@ let appRatingShown = "co.jwenterprises.carpentryplus25.app_rating_shown"
         let message = "Enjoying \(appName!) app? Please rate \(appName!)!"
         let rateAlert = UIAlertController(title: "Rate \(appName!)", message: message, preferredStyle: .alert)
         let goToAppStore = UIAlertAction(title: "Rate", style: .default, handler: { (action) -> Void in
-            let url = NSURL(string: "itms-apps://itunes.apple.com/app/id\(self.appID)")
+            let url = NSURL(string: "itms-apps://itunes.apple.com/app/id\(String(describing: self.appID))")
             UIApplication.shared.openURL(url! as URL)
             
             self.setAppRatingShown()
